@@ -1,0 +1,21 @@
+{
+  "name": "clickheads.lol",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel serve ./src/index.html",
+    "build": "parcel build ./src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.1",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "three": "^0.120.1"
+  }
+}
