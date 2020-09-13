@@ -23,20 +23,27 @@ scene.add(cube);
 const hemLight = new THREE.HemisphereLight("#fff", "#bbb", 1);
 scene.add(hemLight);
 
-const reticle = new THREE.Mesh(
-  new THREE.RingBufferGeometry(0.015, 0.02, 32),
-  new THREE.MeshBasicMaterial({
-    color: "#cc2222",
-    // blending: THREE.AdditiveBlending,
-    side: THREE.DoubleSide,
-  })
-);
-scene.add(reticle);
+const crosshairMat = new THREE.LineBasicMaterial({ color: "#ff5555" });
 
-reticle.position.z = -0.3;
+const crosshairSize = 0.01;
 
-camera.add(reticle);
-camera.position.z = 5;
+const crosshairGeo = new THREE.Geometry();
+
+crosshairGeo.vertices.push(new THREE.Vector3(0, crosshairSize, 0));
+crosshairGeo.vertices.push(new THREE.Vector3(0, -crosshairSize, 0));
+crosshairGeo.vertices.push(new THREE.Vector3(0, 0, 0));
+crosshairGeo.vertices.push(new THREE.Vector3(crosshairSize, 0, 0));
+crosshairGeo.vertices.push(new THREE.Vector3(-crosshairSize, 0, 0));
+
+const crosshair = new THREE.Line(crosshairGeo, crosshairMat);
+
+crosshair.position.z = -0.3;
+
+camera.add(crosshair);
+scene.add(camera);
+
+const gridXZ = new THREE.GridHelper(100, 10);
+scene.add(gridXZ);
 
 function animate() {
   requestAnimationFrame(animate);
